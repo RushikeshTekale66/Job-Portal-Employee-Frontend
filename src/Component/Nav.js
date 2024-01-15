@@ -7,7 +7,7 @@ const Nav = () => {
 
     const logout = () => {
         localStorage.clear();
-        navigate("/signup");
+        navigate("/login");
     }
 
 
@@ -22,7 +22,7 @@ const Nav = () => {
                     {/* <li><Link to="/update/:id">Update Product</Link></li> */}
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to = "/about">About</Link></li>
-                    <li><Link onClick={logout} to="/signup">Log Out</Link></li>
+                    <li><Link onClick={logout} to="/login">Log Out</Link></li>
                 </ul> :
 
                     <ul className="nav-ul nav-right">
