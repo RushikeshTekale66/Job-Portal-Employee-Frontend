@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { URL } from './API_link';
 
 const UpdateJob = () => {
 
@@ -18,7 +19,7 @@ const UpdateJob = () => {
 
   const getJobDetails = async () => {
     console.log(params);
-    let result = await fetch(`http://localhost:9000/job/${params.id}`);
+    let result = await fetch(`${URL}/job/${params.id}`);
     result = await result.json();
     setPosition(result.position);
     setSkills(result.skills);
@@ -36,7 +37,7 @@ const UpdateJob = () => {
 
   const updateJob = async () => {
     console.log(position, skills, salary, company, companyDescription, date, applyLink);
-    let result = await fetch(`http://localhost:9000/job/${params.id}`, {
+    let result = await fetch(`${URL}/job/${params.id}`, {
       method: 'put',
       body: JSON.stringify({ position, skills, salary, company, companyDescription, date, applyLink }),
       headers: {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { URL } from "./API_link";
 
 const AddJob = () => {
     const [position, setPosition] = useState('');
@@ -20,7 +21,7 @@ const AddJob = () => {
         console.log(position, skills, salary, company, companyDescription, date, applyLink);
         const userId = JSON.parse(localStorage.getItem('user'))._id;
 
-        let result = await fetch('http://localhost:9000/add-job', {
+        let result = await fetch(`${URL}/add-job`, {
             method:"post",
             body: JSON.stringify({position, skills, salary, company, companyDescription, date, applyLink, userId}),
             headers:{

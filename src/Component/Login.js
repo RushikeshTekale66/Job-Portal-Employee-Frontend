@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { URL } from './API_link';
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ const Login = (props) => {
 
     const handleLogin = async () => {
         console.log("Email & Password are ", email, password);
-        let result = await fetch('http://localhost:9000/employeelogin',
+        let result = await fetch(`${URL}/employeelogin`,
             {
                 method: 'post',
                 body: JSON.stringify({ email, password }),

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
+import { URL } from "./API_link";
 
 
 const Signup = () => {
@@ -12,7 +13,7 @@ const Signup = () => {
 
     const collectData = async () => {
         console.log(name, email, password);
-        let result = await fetch("http://localhost:9000/employeeregister", {
+        let result = await fetch(`${URL}/employeeregister`, {
             method: 'post',
             body: JSON.stringify({name, email,mobile,position, password}),
             headers: {

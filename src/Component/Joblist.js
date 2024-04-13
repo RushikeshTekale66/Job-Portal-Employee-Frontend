@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { URL } from "./API_link";
 
 const JobList = () => {
     const [jobs, setJobs] = useState([]);
 
     const getJobs = async () => {
-        let result = await fetch('http://localhost:9000/jobs');
+        let result = await fetch(`${URL}/jobs`);
         // result = await result.json();
         result = await result.json();
         setJobs(result);
@@ -16,7 +17,7 @@ const JobList = () => {
     }, [])
 
     const deleteJob = async (_id) => {
-        var result = await fetch(`http://localhost:9000/job/${_id}`, {
+        var result = await fetch(`${URL}/job/${_id}`, {
             method: 'delete',
         })
 
@@ -29,7 +30,7 @@ const JobList = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`http://localhost:9000/search/${key}`);
+            let result = await fetch(`${URL}/search/${key}`);
             result = await result.json();
             if (result) {
                 setJobs(result);
