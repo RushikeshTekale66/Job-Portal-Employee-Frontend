@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { URL } from "./API_link";
 
 
@@ -15,7 +15,7 @@ const Signup = () => {
         console.log(name, email, password);
         let result = await fetch(`${URL}/employeeregister`, {
             method: 'post',
-            body: JSON.stringify({name, email,mobile,position, password}),
+            body: JSON.stringify({ name, email, mobile, position, password }),
             headers: {
                 'content-Type': 'application/json'
             },
@@ -23,38 +23,95 @@ const Signup = () => {
         result = await result.json();
         localStorage.setItem("user", JSON.stringify(result));
         console.log(result);
-        if(result){
+        if (result) {
             navigate('/home')
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const auth = localStorage.getItem('user');
-        if(auth){
+        if (auth) {
             navigate('/home');
         }
     })
- 
+
     return (
-        <div className="register">
-            <h2>Employee Register </h2>
+        <div className="container my-5">
+            <div className="row justify-content-center">
+                <div className="col-md-6 col-lg-5">
+                    <div className="card shadow-sm p-4">
+                        <h2 className="mb-4 text-center">Employee Register</h2>
 
-            <label for="userCaptcha">Name: </label>
-            <input className="inputbox" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter Name" />
+                        <div className="mb-3">
+                            <label htmlFor="nameInput" className="form-label">Name:</label>
+                            <input
+                                id="nameInput"
+                                type="text"
+                                className="form-control"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Enter Name"
+                            />
+                        </div>
 
-            <label for="userCaptcha">Email: </label>
-            <input className="inputbox" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email" />
+                        <div className="mb-3">
+                            <label htmlFor="emailInput" className="form-label">Email:</label>
+                            <input
+                                id="emailInput"
+                                type="email"
+                                className="form-control"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter Email"
+                            />
+                        </div>
 
-            <label for="userCaptcha">Mobile: </label>
-            <input className="inputbox" type="number" value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder="Enter Mobile" />
+                        <div className="mb-3">
+                            <label htmlFor="mobileInput" className="form-label">Mobile:</label>
+                            <input
+                                id="mobileInput"
+                                type="tel"
+                                className="form-control"
+                                value={mobile}
+                                onChange={(e) => setMobile(e.target.value)}
+                                placeholder="Enter Mobile"
+                            />
+                        </div>
 
-            <label for="userCaptcha">Position: </label>
-            <input className="inputbox" type="text" value={position} onChange={(e) => setPosition(e.target.value)} placeholder="Enter Your Position" />
+                        <div className="mb-3">
+                            <label htmlFor="positionInput" className="form-label">Position:</label>
+                            <input
+                                id="positionInput"
+                                type="text"
+                                className="form-control"
+                                value={position}
+                                onChange={(e) => setPosition(e.target.value)}
+                                placeholder="Enter Your Position"
+                            />
+                        </div>
 
-            <label for="userCaptcha">Password: </label>
-            <input className="inputbox" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" />
+                        <div className="mb-4">
+                            <label htmlFor="passwordInput" className="form-label">Password:</label>
+                            <input
+                                id="passwordInput"
+                                type="password"
+                                className="form-control"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter Password"
+                            />
+                        </div>
 
-            <button className="appbutton" type="button" onClick={collectData}>Signup</button>
+                        <button
+                            type="button"
+                            className="btn btn-primary w-100"
+                            onClick={collectData}
+                        >
+                            Signup
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 

@@ -7,9 +7,9 @@ const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    
 
-    let generateCaptcha = ()=> {
+
+    let generateCaptcha = () => {
         const characters = '0123456789';
         const captchaLength = 4; // You can adjust the CAPTCHA length
 
@@ -20,11 +20,11 @@ const Login = (props) => {
         }
 
         document.getElementById('captchaImage').textContent = captcha;
-        const captcha2= captcha;
+        const captcha2 = captcha;
     }
 
 
-    function validateCaptcha () {
+    function validateCaptcha() {
         const userCaptcha = document.getElementById('userCaptcha').value;
         const generatedCaptcha = document.getElementById('captchaImage').textContent;
 
@@ -32,7 +32,7 @@ const Login = (props) => {
             navigate('/');
         } else {
             generateCaptcha();
-            alert("Enter correct capcha") 
+            alert("Enter correct capcha")
         }
     }
 
@@ -67,26 +67,60 @@ const Login = (props) => {
     // })
 
     return (
-        <div>
-            <div className='login'>
-                <h2>Employee Login</h2>
+        <div className="container d-flex justify-content-center align-items-center vh-100">
+            <div className="col-md-6 col-lg-5 shadow p-4 bg-white rounded">
+                <h2 className="text-center mb-4">Employee Login</h2>
 
-                <label >Email: </label>
-                <input className="inputbox" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email" />
+                <div className="mb-3">
+                    <label className="form-label">Email:</label>
+                    <input
+                        className="form-control"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter Email"
+                    />
+                </div>
 
-                <label>Password: </label>
-                <input className="inputbox" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" />
+                <div className="mb-3">
+                    <label className="form-label">Password:</label>
+                    <input
+                        className="form-control"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter Password"
+                    />
+                </div>
 
-                <form>
-                    <label for="userCaptcha">Captcha: </label>
-                    <input className="inputbox" type="text" placeholder='Enter Captcha' id="userCaptcha" name="userCaptcha" />
-                    <span className='capcha' id="captchaImage"></span>
-                    <button style={{borderRadius: '10px', backgroundColor:'greenyellow'}} type="button" onClick={generateCaptcha}>Please generate captcha</button>
-                    {/* <button type="button" onClick={validateCaptcha}>Submit</button> */}
-                </form>
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="userCaptcha">Captcha:</label>
+                    <div className="d-flex mb-2 align-items-center">
+                        <input
+                            className="form-control me-2"
+                            type="text"
+                            id="userCaptcha"
+                            name="userCaptcha"
+                            placeholder="Enter Captcha"
+                        />
+                        <span id="captchaImage" className="border px-3 py-2 rounded bg-light"></span>
+                    </div>
+                    <button
+                        type="button"
+                        className="btn btn-outline-success w-100 mb-3"
+                        onClick={generateCaptcha}
+                    >
+                        Generate Captcha
+                    </button>
+                </div>
 
-
-                <button onClick={handleLogin} className="appbutton" type="button">Submit</button>
+                <button
+                    onClick={handleLogin}
+                    className="btn btn-primary w-100"
+                    type="button"
+                >
+                    Submit
+                </button>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ const AddJob = () => {
 
     const addJob = async () => {
 
-        if(!position || !skills || !salary || !company || !companyDescription || !date || !applyLink) {
+        if (!position || !skills || !salary || !company || !companyDescription || !date || !applyLink) {
             setError(true);
             return false;
         }
@@ -22,10 +22,10 @@ const AddJob = () => {
         const userId = JSON.parse(localStorage.getItem('user'))._id;
 
         let result = await fetch(`${URL}/add-job`, {
-            method:"post",
-            body: JSON.stringify({position, skills, salary, company, companyDescription, date, applyLink, userId}),
-            headers:{
-                'content-type':"application/json"
+            method: "post",
+            body: JSON.stringify({ position, skills, salary, company, companyDescription, date, applyLink, userId }),
+            headers: {
+                'content-type': "application/json"
             }
         })
 
@@ -35,32 +35,59 @@ const AddJob = () => {
     }
 
     return (
-        <div className="product">
-            <h1>Add Job Position</h1>
-            <input className="inputbox" type="text" placeholder="Enter Job position" value={position} onChange={(e) => { setPosition(e.target.value) }} />
-            {error && !position && <span className="invalid-input">Enter valid position</span>}
+        <div className="container my-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-8 col-md-10 col-sm-12">
+                    <h1 className="mb-4 text-center">Add Job Position</h1>
 
-            <input className="inputbox" type="text" placeholder="Enter Salary Range" value={salary} onChange={(e) => { setSalary(e.target.value) }} />
-            {error && !salary && <span className="invalid-input">Enter valid salary</span>}
+                    <div className="mb-3">
+                        <input className="form-control" type="text" placeholder="Enter Job Position"
+                            value={position} onChange={(e) => setPosition(e.target.value)} />
+                        {error && !position && <div className="text-danger mt-1">Enter valid position</div>}
+                    </div>
 
-            <input className="inputbox" type="text" placeholder="Enter Job Skills" value={skills} onChange={(e) => { setSkills(e.target.value) }} />
-            {error && !skills && <span className="invalid-input">Enter valid skills</span>}
+                    <div className="mb-3">
+                        <input className="form-control" type="text" placeholder="Enter Salary Range"
+                            value={salary} onChange={(e) => setSalary(e.target.value)} />
+                        {error && !salary && <div className="text-danger mt-1">Enter valid salary</div>}
+                    </div>
 
-            <input className="inputbox" type="text" placeholder="Enter the Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
-            {error && !company && <span className="invalid-input">Enter Company Name</span>}
+                    <div className="mb-3">
+                        <input className="form-control" type="text" placeholder="Enter Job Skills"
+                            value={skills} onChange={(e) => setSkills(e.target.value)} />
+                        {error && !skills && <div className="text-danger mt-1">Enter valid skills</div>}
+                    </div>
 
-            <input className="inputbox" type="text" placeholder="Enter Company Description" value={companyDescription} onChange={(e) => { setCompanyDescription(e.target.value) }} />
-            {error && !companyDescription && <span className="invalid-input">Enter valid company description</span>}
+                    <div className="mb-3">
+                        <input className="form-control" type="text" placeholder="Enter the Company"
+                            value={company} onChange={(e) => setCompany(e.target.value)} />
+                        {error && !company && <div className="text-danger mt-1">Enter Company Name</div>}
+                    </div>
 
-            <input className="inputbox" type="date"  placeholder="Last Date to Apply"  value={date} onChange={(e) => { setDate(e.target.value) }} />
-            {error && !date && <span className="invalid-input">Enter valid expiry</span>}
+                    <div className="mb-3">
+                        <input className="form-control" type="text" placeholder="Enter Company Description"
+                            value={companyDescription} onChange={(e) => setCompanyDescription(e.target.value)} />
+                        {error && !companyDescription && <div className="text-danger mt-1">Enter valid company description</div>}
+                    </div>
 
-            <input className="inputbox" type="text" placeholder="Job Link" value={applyLink} onChange={(e) => { setApplyLink(e.target.value) }} />
-            {error && !applyLink && <span className="invalid-input">Enter valid Link</span>}
+                    <div className="mb-3">
+                        <input className="form-control" type="date" placeholder="Last Date to Apply"
+                            value={date} onChange={(e) => setDate(e.target.value)} />
+                        {error && !date && <div className="text-danger mt-1">Enter valid expiry</div>}
+                    </div>
 
-            <button onClick={addJob} className="appbutton">Add Job</button>
+                    <div className="mb-4">
+                        <input className="form-control" type="text" placeholder="Job Link"
+                            value={applyLink} onChange={(e) => setApplyLink(e.target.value)} />
+                        {error && !applyLink && <div className="text-danger mt-1">Enter valid Link</div>}
+                    </div>
 
+                    <div className="text-center">
+                        <button onClick={addJob} className="btn btn-primary px-4">Add Job</button>
+                    </div>
+                </div>
             </div>
+        </div>
     )
 }
 

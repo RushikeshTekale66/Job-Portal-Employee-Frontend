@@ -1,12 +1,26 @@
 import React from "react";
 
-const About = ()=>{
-    return(
-        <div className="about">
-            <h1>About</h1>
-            <p>This is the simple React.js application that uses the technology like <b> React.js, Node.js, Express.js & MongoDB</b></p>
-            <p>We can created the database that can store the information of an Jobs, The employeer firstly need to register her self then he can login and after he can perform the operation or done his work</p>
-            <p>In this application we can creating the Jobs backend database management system, In this we can add job to database, update job in database & delete job in database meance all CRUD Operation we can perform here. Also here is search option that can search the job/content in the available database.</p>
+const About = () => {
+    return (
+        <div className="container my-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-8 col-md-10">
+                    <h1 className="mb-4 text-center">About</h1>
+                    <p>
+                        This is a simple <strong>React.js</strong> application that uses technologies like
+                        <strong> React.js, Node.js, Express.js & MongoDB</strong>.
+                    </p>
+                    <p>
+                        We have created a database that stores job information. Employers first need to register themselves,
+                        then log in, and afterwards they can perform various operations.
+                    </p>
+                    <p>
+                        This application includes a job backend database management system. You can <strong>add</strong>, <strong>update</strong>,
+                        and <strong>delete</strong> jobs — i.e., perform all CRUD operations. It also includes a
+                        <strong> search feature</strong> to find jobs/content in the database.
+                    </p>
+                </div>
+            </div>
         </div>
     )
 }
